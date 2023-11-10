@@ -7,5 +7,5 @@ flowchart TD;
     A --> main --> S2[StreamField]-- blocks.CharBlock --> heading --> V3("'min_num': 1");
     S2 -- blocks.RichTextBlock --> paragraph;
     S2 -- ImageChooserBlock --> I2[image] --> V4("'max_num': 5");
-    A --> Footer 
+    A --> Footer --> S3[StreamField] -- blocks.RichTextBlock --> contacts --> V5('min_num': 1, 'max_num': 1)
 ```
