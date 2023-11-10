@@ -23,7 +23,7 @@ class HomePage(Page):
     ], block_counts={
         'logo': {'max_num': 1},
         'menu_item': {'min_num': 1},
-    }, blank=True
+    },use_json_field=True, blank=True
     )
     main = StreamField([
         ('heading', blocks.CharBlock(form_classname="title", verbose_name="Заголовок")),
@@ -40,7 +40,7 @@ class HomePage(Page):
          features=["h2", "h3", "h4", "image", "link", "document-link"])),
     ], block_counts={
         'contacts': {'min_num': 1, 'max_num': 1},
-    }
+    },use_json_field=True, blank=True
     )
 
     class Meta:

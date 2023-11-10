@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static wagtailimages_tags %}
 
-{% block body_class %}d-flex-col justify-content-center{% endblock %}
+{% block body_class %}d-flex-col justify-content-center container-xxl w-100 p-0 m-0{% endblock %}
 
 {% block extra_css %}
 {% comment %}
@@ -39,33 +39,20 @@ Delete the line below if you're just getting started and want to remove the welc
     </div>
   </header>
 
-  <main class="card text-center">
-    <div class="card-body">
-      {% for block in page.body %}
-      {% if block.block_type == 'heading' %}
-        <div class="card-title">{{ block.value }}</div>
-      {% else %}
-      {% if block.block_type == 'paragraph' %}
-        <div class="card-text">{{ block.value }}</div>
-      {% else %}
-        
-      {% endif %}
-      {% endif %}
-      {% endfor %}
-    </div>
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          {% image page.page_bg max-400x400 class="img-fluid rounded-start"%}
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
+  <main class="card text-center overflow-hidden">
+    {% picture page.page_bg format-{avif,webp,jpeg} width-{1440} sizes="100vw"%}
+    <div class="card-img-overlay">
+    {% for block in page.main %}
+    {% if block.block_type == 'heading' %}
+      <div class="card-title"><h2>{{ block.value }}</h2></div>
+    {% else %}
+    {% if block.block_type == 'paragraph' %}
+      <div class="card-text">{{ block.value }}</div>
+    {% else %}        
+    {% picture block.value max-400x400 class="img-fluid"%}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
     </div>
   </main>
 
