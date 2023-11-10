@@ -38,7 +38,9 @@ class HomePage(Page):
     footer = StreamField([
         ('contacts', blocks.RichTextBlock(verbose_name="Контакты",
          features=["h2", "h3", "h4", "image", "link", "document-link"])),
-    ]
+    ], block_counts={
+        'contacts': {'min_num': 1, 'max_num': 1},
+    }
     )
 
     class Meta:
