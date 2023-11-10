@@ -1,4 +1,4 @@
 /.venv
 /.vscode
-tail_alice/static
-tail_alice/media
+*/tail_alice/static
+*/tail_alice/media
