@@ -1,7 +1,7 @@
 
 ```mermaid
 flowchart TD;
-    A[HomePage] --> page_bg -- models.ForeignKey --> I1[image];
+    A[class HomePage(Page)] --> page_bg -- models.ForeignKey --> I1[image];
     A --> navbar --> S1[StreamField] -- ImageChooserBlock --> logo --> V1("'max_num': 1");
     S1 -- blocks.RichTextBlock --> Ni[menu_item] --> V2("'min_num': 1");
     A --> main --> S2[StreamField]-- blocks.CharBlock --> heading --> V3("'min_num': 1");
