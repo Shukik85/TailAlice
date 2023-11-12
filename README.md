@@ -1,11 +1,38 @@
 
 ```mermaid
-flowchart TD;
-    A[class HomePage(Page)] --> page_bg -- models.ForeignKey --> I1[image];
-    A --> navbar --> S1[StreamField] -- ImageChooserBlock --> logo --> V1("'max_num': 1");
-    S1 -- blocks.RichTextBlock --> Ni[menu_item] --> V2("'min_num': 1");
-    A --> main --> S2[StreamField]-- blocks.CharBlock --> heading --> V3("'min_num': 1");
-    S2 -- blocks.RichTextBlock --> paragraph;
-    S2 -- ImageChooserBlock --> I2[image] --> V4("'max_num': 5");
-    A --> Footer --> S3[StreamField] -- blocks.RichTextBlock --> contacts --> V5('min_num': 1, 'max_num': 1)
+flowchart TD
+
+    subgraph A["class HomePage(Page)"]
+        direction TB
+        subgraph page_bg
+            direction TB
+            models.ForeignKey --> W["wagtailimages.Image"];
+            end
+        subgraph navbar
+            direction TB
+            subgraph S1[StreamField]
+            direction TB
+                logo --> IC1[ImageChooserBlock] --> V1("'max_num': 1");
+                menu_item --> blocks.PageChooserBlock --> V2("'min_num': 1");
+                end
+            S1 --> MN1["max_num=6"];
+            end
+        subgraph main
+            direction TB
+            subgraph S2[StreamField]
+                direction TB
+                heading --> blocks.CharBlock --> V3("'min_num': 1, 'max_num': 1");
+                paragraph --> RT1[blocks.RichTextBlock];
+                I2[image] --> IC2[ImageChooserBlock];
+                end
+            end
+        subgraph Footer
+            direction TB
+            subgraph S3[StreamField]
+                direction TB
+                contacts --> RT2[blocks.RichTextBlock] --> V5('min_num': 1, 'max_num': 1)
+                end
+            S3 --> MN2["max_num=1"];
+            end
+        end
 ```
