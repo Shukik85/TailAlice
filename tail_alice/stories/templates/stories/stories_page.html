@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailimages_tags navbar_tags %}
+{% load static wagtailcore_tags wagtailimages_tags navbar_tags %}
 
 {% block body_class %}d-flex-col justify-content-center container-xxl w-100 p-0 m-0{% endblock %}
 
@@ -12,23 +12,21 @@ Delete the line below if you're just getting started and want to remove the welc
 
 {% block content %}
 
-  {% navbar page %}
+{% navbar page %}
 
-  <main class="card text-center overflow-hidden">
-    {% picture page.page_bg format-{avif,webp,jpeg} width-{1440} sizes="10vw"%}<!-- поправить -->
+<main class="card text-center overflow-hidden">
+    {% picture page.page_bg format-{avif,webp,jpeg} width-{1440} sizes="100vw" %}<!-- поправить -->
     <div class="card-img-overlay" style="top: 5%; bottom: 5%;">
-      {% for block in page.main %}
-        {% if block.block_type == 'heading' %}
+      {% for block in page.body %}
+        {% if block.block_type == 'title' %}
           <div class="card-title"><h2>{{ block.value }}</h2></div>
         {% else %}
-          {% if block.block_type == 'paragraph' %}
-            <div class="card-text">{{ block.value }}</div>
-          {% else %}        
-            {% picture block.value max-400x400 class="img-fluid"%}
+          {% if block.block_type == 'content' %}
+            <div class="card-text">{{ block.value|richtext }}</div>
           {% endif %}
         {% endif %}
       {% endfor %}
     </div>
   </main>
-
 {% endblock content %}
+

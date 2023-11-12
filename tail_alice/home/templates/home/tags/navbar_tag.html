@@ -1,0 +1,28 @@
+{% load static wagtailimages_tags %}
+
+<nav class="navbar navbar-expand-lg fixed-top bg-body bg-opacity-75">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">
+        {% image navbar.block_logo max-60x60 %}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% for nav in navbar %}
+                    {% if nav.block_type == "menu_item" %}
+                    <li><a href="{{ nav.value.url }}" class="nav-link px-2 {% if nav.value.url == url %} active {% endif %} ">{{ nav.value }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
+        </div>
+    </div>
+</nav>
