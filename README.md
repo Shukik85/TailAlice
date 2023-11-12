@@ -30,7 +30,7 @@ flowchart TD
             direction TB
             subgraph S3[StreamField]
                 direction TB
-                contacts --> RT2[blocks.RichTextBlock] --> V5('min_num': 1, 'max_num': 1)
+                contacts --> RT2[blocks.RichTextBlock];
                 end
             S3 --> MN2["max_num=1"];
             end
